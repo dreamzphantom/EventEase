@@ -1,0 +1,16 @@
+@page "/"
+
+<PageTitle>EventEase Events</PageTitle>
+<h1>Upcoming Events</h1>
+<p>Browse events, add personal notes, and select an event to view details.</p>
+
+<div class="event-grid">
+    @foreach (var item in events)
+    {
+        <EventCard Event="item" />
+    }
+</div>
+
+@code {
+    private readonly IReadOnlyList<EventModel> events = EventData.All;
+}

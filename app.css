@@ -1,0 +1,25 @@
+:root { font-family: Arial, sans-serif; color: #172033; background: #f5f7fb; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.site-header { background: #172554; color: white; }
+nav { max-width: 1100px; margin: auto; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+a { color: #1d4ed8; }
+.site-header a { color: white; text-decoration: none; }
+.brand { font-size: 1.35rem; font-weight: 700; }
+.nav-links { display: flex; gap: 1rem; }
+.nav-links .active { text-decoration: underline; font-weight: 700; }
+.container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+.event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.event-card, .session-card { background: white; border: 1px solid #dbe2ef; border-radius: 12px; padding: 1rem; box-shadow: 0 3px 12px rgba(0,0,0,.06); }
+label { font-weight: 600; }
+input, select { width: 100%; padding: .65rem; margin-top: .3rem; border: 1px solid #9ca3af; border-radius: 6px; }
+button, .button { display: inline-block; border: 0; border-radius: 6px; padding: .7rem 1rem; background: #1d4ed8; color: white; cursor: pointer; text-decoration: none; }
+.form-field { margin-bottom: 1rem; }
+.checkbox-field { display: flex; align-items: center; gap: .5rem; }
+.checkbox-field input, .attendance-row input[type=checkbox] { width: auto; }
+.validation-message, .validation-errors { color: #b91c1c; }
+.success { color: #166534; font-weight: 700; }
+.binding-preview { color: #526179; font-size: .9rem; }
+.tracker-toolbar, .attendance-row { display: flex; gap: 1rem; align-items: center; margin-bottom: .8rem; }
+.attendance-row input[type=text] { max-width: 320px; }
+@media (max-width: 600px) { nav, .attendance-row { align-items: stretch; flex-direction: column; } }

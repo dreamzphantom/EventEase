@@ -1,0 +1,18 @@
+@page "/register"
+@rendermode InteractiveServer
+@inject UserSessionService Session
+
+<PageTitle>Register</PageTitle>
+<h1>Event Registration</h1>
+<p>Required fields are validated before the registration is saved.</p>
+
+<RegistrationForm Events="EventData.All" />
+
+@if (Session.IsRegistered)
+{
+    <section class="session-card">
+        <h2>Current session</h2>
+        <p>@Session.CurrentRegistration!.FullName is registered.</p>
+        <button type="button" @onclick="Session.Clear">Clear session</button>
+    </section>
+}

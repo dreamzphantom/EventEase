@@ -1,0 +1,16 @@
+@inherits LayoutComponentBase
+
+<header class="site-header">
+    <nav>
+        <a class="brand" href="/">EventEase</a>
+        <div class="nav-links">
+            <NavLink href="/" Match="NavLinkMatch.All">Events</NavLink>
+            <NavLink href="/register">Register</NavLink>
+            <NavLink href="/attendance">Attendance</NavLink>
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+    @Body
+</main>

@@ -1,0 +1,30 @@
+<section>
+    <div class="tracker-toolbar">
+        <strong>Present: @records.Count(x => x.IsPresent) / @records.Count</strong>
+        <button type="button" @onclick="AddAttendee">Add attendee</button>
+    </div>
+
+    @foreach (var record in records)
+    {
+        <div class="attendance-row" @key="record.Id">
+            <InputCheckbox @bind-Value="record.IsPresent" />
+            <InputText @bind-Value="record.AttendeeName" aria-label="Attendee name" />
+            <span>@(record.IsPresent ? "Present" : "Not checked in")</span>
+        </div>
+    }
+</section>
+
+@code {
+    private readonly List<AttendanceRecord> records =
+    [
+        new() { Id = 1, AttendeeName = "Alex Morgan" },
+        new() { Id = 2, AttendeeName = "Jordan Lee" },
+        new() { Id = 3, AttendeeName = "Taylor Smith" }
+    ];
+
+    private void AddAttendee()
+    {
+        var nextId = records.Count == 0 ? 1 : records.Max(x => x.Id) + 1;
+        records.Add(new AttendanceRecord { Id = nextId, AttendeeName = $"Attendee {nextId}" });
+    }
+}

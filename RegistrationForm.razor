@@ -1,0 +1,57 @@
+@inject UserSessionService Session
+
+<EditForm Model="model" OnValidSubmit="Submit" FormName="registration-form">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-field">
+        <label for="full-name">Full name</label>
+        <InputText id="full-name" @bind-Value="model.FullName" />
+        <ValidationMessage For="() => model.FullName" />
+    </div>
+
+    <div class="form-field">
+        <label for="email">Email</label>
+        <InputText id="email" @bind-Value="model.Email" />
+        <ValidationMessage For="() => model.Email" />
+    </div>
+
+    <div class="form-field">
+        <label for="event">Event</label>
+        <InputSelect id="event" @bind-Value="model.EventId">
+            <option value="">Select an event</option>
+            @foreach (var item in Events)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="() => model.EventId" />
+    </div>
+
+    <div class="checkbox-field">
+        <InputCheckbox id="policy" @bind-Value="model.AcceptPolicy" />
+        <label for="policy">I agree to follow the attendance policy.</label>
+    </div>
+    <ValidationMessage For="() => model.AcceptPolicy" />
+
+    <button type="submit">Register</button>
+</EditForm>
+
+@if (submitted)
+{
+    <p class="success" role="status">Registration saved for this session.</p>
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public IReadOnlyList<EventModel> Events { get; set; } = [];
+
+    private RegistrationModel model = new();
+    private bool submitted;
+
+    private void Submit()
+    {
+        Session.SaveRegistration(model);
+        submitted = true;
+    }
+}

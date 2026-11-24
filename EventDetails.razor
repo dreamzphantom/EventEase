@@ -1,0 +1,28 @@
+@page "/events/{Id:int}"
+
+<PageTitle>Event Details</PageTitle>
+
+@if (selectedEvent is null)
+{
+    <h1>Event not found</h1>
+    <p>No event exists with ID @Id.</p>
+    <a href="/">Return to events</a>
+}
+else
+{
+    <h1>@selectedEvent.Name</h1>
+    <p><strong>Date:</strong> @selectedEvent.Date.ToString("D")</p>
+    <p><strong>Location:</strong> @selectedEvent.Location</p>
+    <p>@selectedEvent.Description</p>
+    <a class="button" href="/register">Register now</a>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private EventModel? selectedEvent;
+
+    protected override void OnParametersSet()
+    {
+        selectedEvent = EventData.All.FirstOrDefault(e => e.Id == Id);
+    }
+}

@@ -1,0 +1,19 @@
+<article class="event-card">
+    <h2>@Event.Name</h2>
+    <p><strong>Date:</strong> @Event.Date.ToString("MMMM d, yyyy")</p>
+    <p><strong>Location:</strong> @Event.Location</p>
+    <p>@Event.Description</p>
+
+    <label for="notes-@Event.Id">Your notes</label>
+    <input id="notes-@Event.Id" @bind="Notes" placeholder="Add notes" />
+    <p class="binding-preview">Two-way binding preview: @Notes</p>
+
+    <a class="button" href="/events/@Event.Id">View details</a>
+</article>
+
+@code {
+    [Parameter, EditorRequired]
+    public EventModel Event { get; set; } = default!;
+
+    private string Notes { get; set; } = string.Empty;
+}
